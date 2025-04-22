@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masjid Baitul Ma'mur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007b77;
+            --accent-color: #f9a825;
+            --secondary-color: #195e8a;
+            --whatsapp-color: #009c79;
+            --text-color: #333;
+            --bg-light: #f7f7f7;
+            --white: #fff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --radius-sm: 8px;
+            --radius-md: 10px;
+            --radius-lg: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--white);
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background-color: rgba(255, 255, 255, 0.5);
+            background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEi6LckKFahpzz0q4-5hnBZWigDVRxmcbFZwWKI7qsFTN77K4JQA8CuYyF2QBaJGqXW6lhPbblUzxtZD7PUjFsXWlCwn0Me9ILrtnRTHoboSfipmcjYYRCpPXxl3WyBn2--14u-90_rqWZF0oG0iYitHlbEJlSj5X2RIbrBDlbw5G_gVfS4x5eFFoFdcsRU');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            color: var(--primary-color);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .location {
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 700;
+            transition: transform 0.2s, background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #006663;
+        }
+
+        .donasi-total {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 30px 20px;
+            font-size: 28px;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: var(--shadow);
+        }
+
+        .donasi-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .quote, .doa {
+            text-align: center;
+            font-style: italic;
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+            color: #555;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .rekening-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        .rekening-box {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            width: 300px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .rekening-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .bank-logo {
+            width: 70px;
+            height: 70px;
+            background-color: #e0e0e0;
+            margin-right: 15px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            overflow: hidden;
+        }
+        
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .rekening-text {
+            text-align: left;
+        }
+
+        .bank-name {
+            display: block;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .account-number {
+            display: block;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        .wa-boxes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        .wa-box {
+            background-color: var(--whatsapp-color);
+            color: var(--white);
+            padding: 15px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            width: 270px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .wa-box:hover {
+            transform: translateY(-3px);
+        }
+
+        .wa-logo {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.2);
+            margin-right: 15px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wa-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .wa-logo::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .wa-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        .galeri-item {
+            background-color: #dcdcdc;
+            aspect-ratio: 16/9;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .galeri-item:hover {
+            transform: scale(1.05);
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .galeri-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .galeri-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .galeri-controls button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .galeri-controls button:hover {
+            background-color: #006663;
+        }
+
+        /* Modal for gallery images */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            transition: opacity 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .sosial-media {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: var(--shadow);
+        }
+
+        .sosial-media h3 {
+            margin-bottom: 20px;
+        }
+
+        .sosial-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .sosial-logo {
+            width: 30px;
+            height: 30px;
+            background-color: #e0e0e0;
+            margin-right: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .sosial-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 50px;
+        }
+
+        .config-form {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: var(--shadow);
+            display: none; /* Hidden by default */
+        }
+
+        .config-form input, .config-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+        }
+
+        .config-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .admin-button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .admin-button:hover {
+            opacity: 1;
+        }
+
+        /* Animation for total donation counter */
+        @keyframes countUp {
+            from { opacity: 0.5; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-count {
+            animation: countUp 1s ease-out;
+        }
+
+        /* MASTERPLAN SECTION STYLES */
+        .masterplan-section {
+            background-color: var(--white);
+            padding: 40px 20px;
+            border-radius: var(--radius-lg);
+            margin: 40px auto;
+            max-width: 1000px;
+            box-shadow: var(--shadow);
+        }
+
+        .masterplan-subtitle {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .masterplan-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .masterplan-main {
+            width: 100%;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .masterplan-main:hover {
+            transform: scale(1.02);
+        }
+
+        .masterplan-main img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .masterplan-title {
+            text-align: center;
+            color: var(--secondary-color);
+            margin: 15px 0;
+            font-weight: 700;
+        }
+
+        .masterplan-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .masterplan-item {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .masterplan-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .masterplan-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .masterplan-item-content {
+            padding: 15px;
+        }
+
+        .masterplan-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .masterplan-item p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .masterplan-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Masterplan modal styles */
+        .masterplan-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            transition: opacity 0.3s;
+        }
+
+        .masterplan-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .masterplan-close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .donasi-amount {
+                font-size: 2rem;
+            }
+            
+            .rekening-box, .wa-box {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .galeri {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .masterplan-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#">Beranda</a>
+                <a href="#masterplan">Masterplan</a>
+                <a href="#donasi">Donasi</a>
+                <a href="#dokumentasi">Dokumentasi</a>
+                <!-- Hidden admin link that leads to the admin page -->
+                <a href="admin.html" style="position: absolute; top: -9999px; left: -9999px;">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h3 class="subtitle">RELOKASI PEMBANGUNAN</h3>
+                <h1 class="title">MASJID<br>BAITUL MA'MUR</h1>
+                <p class="location">Dukuh Sembir, Desa Blado, Kecamatan Blado<br>Kabupaten Batang, Jawa Tengah</p>
+                <a href="#donasi"><button class="btn">SALURKAN AMAL JARIYAH ANDA</button></a>
+            </div>
+        </section>
+
+        <div class="donasi-total">
+            <div class="donasi-amount animate-count">Rp <span id="totalDonasi">79.630.000</span></div>
+            <small>Total Donasi Terkumpul</small>
+        </div>
+
+        <div class="quote">
+            "Siapa yang membangun masjid karena Allah, maka Allah akan membangun baginya semisal itu di surga."<br>
+            <strong>(HR. Bukhari no. 450 dan Muslim no. 533)</strong>
+        </div>
+
+        <!-- MASTERPLAN SECTION BEGIN -->
+        <section id="masterplan" class="masterplan-section">
+            <h3 class="section-title">MASTERPLAN PEMBANGUNAN</h3>
+            <p class="masterplan-subtitle">Rancangan Masjid Baitul Ma'mur yang Insya Allah akan kita wujudkan bersama</p>
+
+            <div class="masterplan-container">
+                <div class="masterplan-main">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgUWUd7LI0SGkXwy0655aJhZhYWslQV-AMe4mLQ7KVItJCHsNOVhKm3Vt2Z8Si58-t7bdmjuxO30NyaGV9bMnGZrhRBvp4iMJYxzdDR1i_2ikCa7mLkNqdVE6ou-CJe5nqrhcq2IlA7ZPIWak2e2hTgrveh5Fa1_-j65tF30hBkqNAuZMtHJCsHsFPRnQ8" alt="Masterplan Masjid Baitul Ma'mur" id="mainMasterplan">
+                    <h3 class="masterplan-title">Desain Utama Masjid Baitul Ma'mur</h3>
+                </div>
+
+                <div class="masterplan-details">
+                    <div class="masterplan-item">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi6LckKFahpzz0q4-5hnBZWigDVRxmcbFZwWKI7qsFTN77K4JQA8CuYyF2QBaJGqXW6lhPbblUzxtZD7PUjFsXWlCwn0Me9ILrtnRTHoboSfipmcjYYRCpPXxl3WyBn2--14u-90_rqWZF0oG0iYitHlbEJlSj5X2RIbrBDlbw5G_gVfS4x5eFFoFdcsRU" alt="Tampak Depan">
+                        <div class="masterplan-item-content">
+                            <h4>Tampak Depan</h4>
+                            <p>Desain fasad depan masjid dengan gaya arsitektur modern yang tetap mempertahankan unsur Islami.</p>
+                        </div>
+                    </div>
+
+                    <div class="masterplan-item">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjVyMV5JFm-ZyJCmgfSm5ZbXcRa7BuV17toXX-J_X6e4VpKf7MiQfT52de8GtWee4tZUMjGSCIc4KGX43-QtLQoLlm8nNFEMURCwhjOLPVsvO9Yw4t0AvMR4kcYKBiXNBQ7GjggiPTAzeH-TdA_wt7_nieza-vcHfulf2bAe9MYYXsGRdlK3_KlBqt5UoA" alt="Tampak Samping">
+                        <div class="masterplan-item-content">
+                            <h4>Tampak Samping</h4>
+                            <p>Desain dari sudut samping yang menunjukkan keluasan halaman dan area parkir masjid.</p>
+                        </div>
+                    </div>
+
+                    <div class="masterplan-item">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEguMKvWWOO9gGKjJHmkceuzhfbY4wYoUBlBTf95wTz25m0K-CZ7y70mvY9-jaboCf-LGtNLvpAkXl2UKrgDe9RbTPDftVTn-wDdTt96BqqT7P7pAXxuZr2QSON3ppc3xE4fcjOp9MFIkxpj_7Vtt-knXktq2BGPeblrxvyi01zCTJcCMs5i08Mg_x4usxY" alt="Interior Masjid">
+                        <div class="masterplan-item-content">
+                            <h4>Interior Masjid</h4>
+                            <p>Rancangan ruang dalam masjid yang nyaman dan lapang untuk beribadah.</p>
+                        </div>
+                    </div>
+
+                    <div class="masterplan-item">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgUcJJ2uN3FR7Re96WTvqO7Oe5BAg9Z6YitPuEAlxTHaP9aqUQm5PBNep1TMzvE1d9ltUvAHHAfee2Sc2Um-lkgn-6VU0WhTsju0cEChAZL_yWPnbhyTO1ACvwtFCLaOq9SKgHuFiDMj81yqhXh6ztdYIbog3t4IEqNfY_wj1_XvJvqwZHXL1idCmWhwRE" alt="Area Pendukung">
+                        <div class="masterplan-item-content">
+                            <h4>Area Pendukung</h4>
+                            <p>Fasilitas pelengkap seperti tempat wudhu, toilet, dan area pendidikan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masterplan-cta">
+                    <a href="#donasi" class="btn">BANTU WUJUDKAN MASJID INI</a>
+                </div>
+            </div>
+        </section>
+        <!-- MASTERPLAN SECTION END -->
+
+        <section id="donasi">
+            <h3 class="section-title">SALURKAN AMAL JARIYAH ANDA MELALUI:</h3>
+            <div class="rekening-container">
+                <div class="rekening-box">
+                    <div class="bank-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh4yQEzITP1daiigftPH7OxGCFq4lmCX5OzrTciiH0dp66TuPhcb3dhTancWAQ23G3rkQ0NKTj4nsAI3dPnuBLiWk_Gn2sibjvby9n4t_Et-vZmxATS2uRcRL4vijCI06XEXpOGha5j_BdWotiHKcIqEuvWJSCOadE2nJ_CKjECavHkOW9NL1OrYtraPpE" alt="Bank Jateng Logo">
+                    </div>
+                    <div class="rekening-text">
+                        <span class="bank-name">BANK JATENG</span>
+                        Nomor Rekening<br>
+                        <span class="account-number">5825 0104 7617 534</span>
+                        a.n Masjid Baitul Ma'mur
+                    </div>
+                </div>
+                <div class="rekening-box">
+                    <div class="bank-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjneJlld_2Pl1gvc5IBiLA1Dm2dXpTzc7ZOhDoRnr-9U_m5qiqHkOSNKhkunaRBFjDh8ENuh7Ede4FD5yr-v2ki1Wo4yWy1cJock95bC5fAfsxC9bB3YDTES9so-1sHjHLwGtDqn6VAIe4HJYnJE3ULAvcEWZF_DhTEFeXfHkZ31MYkP4O6_K9q2oag7zc" alt="Bank BRI Logo">
+                    </div>
+                    <div class="rekening-text">
+                        <span class="bank-name">BANK BRI</span>
+                        Nomor Rekening<br>
+                        <span class="account-number">314 507 5814</span>
+                        a.n Masjid Baitul Ma'mur
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="doa">
+            "Ya Allah, berikanlah pahala dari apa yang telah diinfakkan dan jadikanlah sedekah ini sebagai pintu pembuka rezeki yang lebih luas lagi. Aamiin ya rabbal alamin."
+        </div>
+
+        <section>
+            <h3 class="section-title">KONFIRMASI MELALUI WHATSAPP</h3>
+            <div class="wa-boxes">
+                <a href="https://wa.me/6281328027806" target="_blank" class="wa-box">
+                    <div class="wa-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEij1xL6MZfJKWU-_Lyso89hJH-ddzXFjhJRDlqAdIaeXInv-11Q6jbF80UmK2FwzcMdazxAPhbd3IcUu3i5MLMWO4vmMAx7D2044afThTJ4Hunv_6G8CIpC_z49kCDZl2QM_Vqs77Chj4HrZ0hFYKpmgiK08nlOL285YuLd3c0mc1px2YLVv-3-cgWFElQ" alt="WhatsApp Logo">
+                    </div>
+                    <div>
+                        <div class="wa-name">H. AGUS EFMANTO, S.IP</div>
+                        0813 2802 7806
+                    </div>
+                </a>
+                <a href="https://wa.me/6285727205889" target="_blank" class="wa-box">
+                    <div class="wa-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEij1xL6MZfJKWU-_Lyso89hJH-ddzXFjhJRDlqAdIaeXInv-11Q6jbF80UmK2FwzcMdazxAPhbd3IcUu3i5MLMWO4vmMAx7D2044afThTJ4Hunv_6G8CIpC_z49kCDZl2QM_Vqs77Chj4HrZ0hFYKpmgiK08nlOL285YuLd3c0mc1px2YLVv-3-cgWFElQ" alt="WhatsApp Logo">
+                    </div>
+                    <div>
+                        <div class="wa-name">SUTARIS</div>
+                        0857 2720 5889
+                    </div>
+                </a>
+                <a href="https://wa.me/6289532271988" target="_blank" class="wa-box">
+                    <div class="wa-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEij1xL6MZfJKWU-_Lyso89hJH-ddzXFjhJRDlqAdIaeXInv-11Q6jbF80UmK2FwzcMdazxAPhbd3IcUu3i5MLMWO4vmMAx7D2044afThTJ4Hunv_6G8CIpC_z49kCDZl2QM_Vqs77Chj4HrZ0hFYKpmgiK08nlOL285YuLd3c0mc1px2YLVv-3-cgWFElQ" alt="WhatsApp Logo">
+                    </div>
+                    <div>
+                        <div class="wa-name">H. KASINO, A.Md. Kep</div>
+                        0895 3227 19888
+                    </div>
+                </a>
+                <a href="https://wa.me/6285865057220" target="_blank" class="wa-box">
+                    <div class="wa-logo">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEij1xL6MZfJKWU-_Lyso89hJH-ddzXFjhJRDlqAdIaeXInv-11Q6jbF80UmK2FwzcMdazxAPhbd3IcUu3i5MLMWO4vmMAx7D2044afThTJ4Hunv_6G8CIpC_z49kCDZl2QM_Vqs77Chj4HrZ0hFYKpmgiK08nlOL285YuLd3c0mc1px2YLVv-3-cgWFElQ" alt="WhatsApp Logo">
+                    </div>
+                    <div>
+                        <div class="wa-name">INDRATMO</div>
+                        0858 6505 7220
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="dokumentasi">
+            <h3 class="section-title">DOKUMENTASI PEMBANGUNAN MASJID</h3>
+            <div id="galeri" class="galeri">
+                <!-- Images will be loaded dynamically by JavaScript -->
+                <!-- Placeholder content that will be replaced -->
+                <div class="galeri-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjamy3Q93ZSosHoaLFpBEz7ptJHzVrKv86mtPhT6Y_M95Kn1rZylUxSB-ICKWNWseu6QBMb_6KeCXPKRTpEpA3C96fYPhnoQ6Oqndnrt7Z6UnMgOZrYm_yeB3KcnulvU7p5Wmk5vIf7TGDTaNWDL8VvLuhA6xuEj1gyDKODdrHu5j4SCghiVeLF0JLzl1c" alt="Dokumentasi Pembangunan"></div>
+                <div class="galeri-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiT9zzYmhwNyQrNINDGGw6sGnwaudezBpAZiOQEqGa0WwrFNplRtAq3VcvoAy1Y10Uv9ZX-HO8zZ7QV6y_T6PbEqtATKQRwGqtbvU-xImk1zWhfgqN-uQ8oENbWRrh89aMJaCTz862nMcTjqRlA540SVbcLiXlSs1dYobGIWFv-s82Stie0igKYDehyG60=w1684-h1069-p-k-no-nu" alt="Dokumentasi Pembangunan"></div>
+                <div class="galeri-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiDD1fNsTXGOYzd-x2lKscvtW62jg0om0ay5QCYaaTvgUgyg1EalBXwdyaYccf8qKkofoJtSDvyiuUrzp5sVUnlJA3d8vL5b5zUniioEkQ-h3HXVoXZGF-goophx7MGejQby88GqdmcQMU4ZVowYed4_-9ONA-_TNszoeRjwVmLEnzz7nshTlbmpXCq4dE" alt="Dokumentasi Pembangunan"></div>
+				<div class="galeri-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEi6qmKz4o5_rISKnDkzqOs0Xw_2KNCaUmkFjK5UeddfOgMLBbkUnSJPyMs89lpOCByWU2QSJOq1EcZZSbP8ZWCNEsUpoxHBWpTTWlREoLx740eLJWSQ28cag9MPolM_tvQxPc_LOuPwE3kKxWPpDiOr8lcyWbYDNLFkt8-PV9wAGaeSecX8CtX42YFTycU" alt="Peletakan Batu Pertama"></div>
+            </div>
+            <div class="galeri-controls">
+                <button id="loadMoreBtn">Lihat Lebih Banyak</button>
+            </div>
+        </section>
+
+        <!-- Image modal -->
+        <div id="imageModal" class="image-modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+
+        <!-- Masterplan Modal -->
+        <div id="masterplanModal" class="masterplan-modal">
+            <span class="masterplan-close-modal">&times;</span>
+            <img class="masterplan-modal-content" id="masterplanModalImage">
+        </div>
+
+        <div class="sosial-media">
+            <h3>Ikuti Akun Sosial Media Kami</h3>
+            <p>Dapatkan update terbaru tentang pembangunan Masjid Baitul Ma'mur:</p>
+            <div class="sosial-item">
+                <div class="sosial-logo">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgH9B3vGNuogDDR-f9ujq32kBiifw21AaFwmgm83QyhP-zB36EPQM3iyeC__Jcof1b7Vt3yvXQaOluN-KTq0Mj52SkSot-imtX0_v73CKZL4KbAHwlPAL2HpbWiObxYT_ZAY7SjFgU_RVOhjQW3VC36Xe3ocr4uKQl1Cc4xDvZbTP3s_qA0dcn6UV94eb4" alt="Facebook Logo">
+                </div>
+                <div>Masjid Baitul Ma'mur</div>
+            </div>
+            <div class="sosial-item">
+                <div class="sosial-logo">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhm347keCxOaFIeeF4XvL3m1kxUOphsLl558aM0VhJg9_xRs44l0jC-FyPGD31MITXSp0jV30F-pcqR_rpaLoNkYEqDGePxinohJEey5zxf-f8-htKePvrRm1Gxyw2sxGvF-tZg7urNXk2EiLoV8r5JopfELrSZaW7KYil-q6s2fPbJDf3SgChzsf_sXCk" alt="Instagram Logo">
+                </div>
+                <div>@masjidbaitulmakmur_sembir</div>
+            </div>
+            <div class="sosial-item">
+                <div class="sosial-logo">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj39aUqwW3vy4YLaLomJ0g7rTZvtuhIeMEzAEQ1HYCE5qTND1tShV5uWQ4kMwVhmPKppRoycygZopxpT4aHBfq1pV6dRGIItjbcE5qm06UyzjTew0lJVJr4d7RSi8t-CnD3GxRr57hlucuDDk2aSEGO0FAR9bZolkho0zb1Mib-cZGzfpG7QqCaBTzjtpk" alt="YouTube Logo">
+                </div>
+                <div>@MasjidBaitulMakmurSembir</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden forms - not displayed on main page -->
+
+    <footer>
+        <div class="container">
+            &copy; Masjid Baitul Ma'mur – 2025
+        </div>
+    </footer>
+
+    <script>
+        // Image gallery configuration
+        let galleryConfig = {
+            // Default image URLs (can be replaced via admin panel)
+            imageUrls: [
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300"
+            ],
+            imagesPerPage: 6,
+            currentPage: 1
+        };
+
+        // Check for saved configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load gallery configuration from localStorage if available
+            const savedConfig = localStorage.getItem('galleryConfig');
+            if (savedConfig) {
+                const parsedConfig = JSON.parse(savedConfig);
+                galleryConfig.imageUrls = parsedConfig.imageUrls || galleryConfig.imageUrls;
+            }
+
+            // Load donation amount from localStorage if available
+            const savedDonation = localStorage.getItem('donationConfig');
+            if (savedDonation) {
+                const donationConfig = JSON.parse(savedDonation);
+                document.getElementById('totalDonasi').innerText = donationConfig.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            // Load masterplan images from localStorage if available
+            loadMasterplanImages();
+            
+            // Load logo images from localStorage if available
+            loadLogoImages();
+
+            // Initialize gallery
+            loadGalleryImages();
+
+            // Initialize donation counter animation
+            animateDonationCounter();
+
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Set up masterplan event listeners
+            setupMasterplanEventListeners();
+        });
+
+        // Load gallery images based on current configuration
+        function loadGalleryImages() {
+            const gallery = document.getElementById('galeri');
+            gallery.innerHTML = '';
+
+            // Calculate which images to show based on pagination
+            const startIndex = 0;
+            const endIndex = Math.min(galleryConfig.imagesPerPage, galleryConfig.imageUrls.length);
+
+            // Add images to gallery
+            for (let i = startIndex; i < endIndex; i++) {
+                if (i < galleryConfig.imageUrls.length) {
+                    const item = document.createElement('div');
+                    item.className = 'galeri-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = galleryConfig.imageUrls[i];
+                    img.alt = 'Dokumentasi Pembangunan ' + (i + 1);
+                    img.loading = 'lazy'; // Lazy loading for better performance
+                    
+                    item.appendChild(img);
+                    gallery.appendChild(item);
+                    
+                    // Add click event to open modal
+                    item.addEventListener('click', function() {
+                        openImageModal(img.src);
+                    });
+                }
+            }
+
+            // Update load more button visibility
+            document.getElementById('loadMoreBtn').style.display = 
+                galleryConfig.imageUrls.length > galleryConfig.imagesPerPage ? 'block' : 'none';
+        }
+
+        // Load more images when the button is clicked
+        function loadMoreImages() {
+            const gallery = document.getElementById('galeri');
+            
+            // Get current number of images
+            const currentImageCount = gallery.children.length;
+            
+            // Calculate how many more to load
+            const moreToLoad = Math.min(
+                galleryConfig.imagesPerPage,
+                galleryConfig.imageUrls.length - currentImageCount
+            );
+            
+            // Add more images
+            for (let i = currentImageCount; i < currentImageCount + moreToLoad; i++) {
+                if (i < galleryConfig.imageUrls.length) {
+                    const item = document.createElement('div');
+                    item.className = 'galeri-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = galleryConfig.imageUrls[i];
+                    img.alt = 'Dokumentasi Pembangunan ' + (i + 1);
+                    img.loading = 'lazy';
+                    
+                    item.appendChild(img);
+                    gallery.appendChild(item);
+                    
+                    // Add click event
+                    item.addEventListener('click', function() {
+                        openImageModal(img.src);
+                    });
+                }
+            }
+            
+            // Hide the button if we've shown all images
+            if (gallery.children.length >= galleryConfig.imageUrls.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+
+        // Open image modal
+        function openImageModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+        
+        // Open masterplan modal
+        function openMasterplanModal(imageSrc) {
+            const modal = document.getElementById('masterplanModal');
+            const modalImg = document.getElementById('masterplanModalImage');
+            
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+        
+        // Load masterplan images from localStorage
+        function loadMasterplanImages() {
+            const savedConfig = localStorage.getItem('masterplanConfig');
+            if (savedConfig) {
+                const masterplanConfig = JSON.parse(savedConfig);
+                
+                // Update main masterplan image if available
+                if (masterplanConfig.mainImage) {
+                    const mainMasterplan = document.getElementById('mainMasterplan');
+                    if (mainMasterplan) {
+                        mainMasterplan.src = masterplanConfig.mainImage;
+                    }
+                }
+                
+                // Update detail images if available
+                const masterplanItems = document.querySelectorAll('.masterplan-item img');
+                if (masterplanItems.length >= 4) {
+                    if (masterplanConfig.frontView) masterplanItems[0].src = masterplanConfig.frontView;
+                    if (masterplanConfig.sideView) masterplanItems[1].src = masterplanConfig.sideView;
+                    if (masterplanConfig.interior) masterplanItems[2].src = masterplanConfig.interior;
+                    if (masterplanConfig.supportArea) masterplanItems[3].src = masterplanConfig.supportArea;
+                }
+            }
+        }
+        
+        // Load logo images from localStorage
+        function loadLogoImages() {
+            const savedLogos = localStorage.getItem('logosConfig');
+            if (savedLogos) {
+                const logosConfig = JSON.parse(savedLogos);
+                
+                // Update bank logos
+                const bankLogos = document.querySelectorAll('.bank-logo img');
+                if (bankLogos.length >= 2) {
+                    if (logosConfig.bankJateng) bankLogos[0].src = logosConfig.bankJateng;
+                    if (logosConfig.bankBRI) bankLogos[1].src = logosConfig.bankBRI;
+                }
+                
+                // Update WhatsApp logos
+                if (logosConfig.whatsapp) {
+                    document.querySelectorAll('.wa-logo img').forEach(img => {
+                        img.src = logosConfig.whatsapp;
+                    });
+                }
+                
+                // Update social media logos
+                const socialLogos = document.querySelectorAll('.sosial-logo img');
+                if (socialLogos.length >= 3) {
+                    if (logosConfig.facebook) socialLogos[0].src = logosConfig.facebook;
+                    if (logosConfig.instagram) socialLogos[1].src = logosConfig.instagram;
+                    if (logosConfig.youtube) socialLogos[2].src = logosConfig.youtube;
+                }
+            }
+        }
+
+        // Animate donation counter
+        function animateDonationCounter() {
+            const counter = document.getElementById('totalDonasi');
+            const target = counter.innerText.replace(/\./g, '');
+            let current = 0;
+            const increment = Math.ceil(parseInt(target) / 30);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= parseInt(target)) {
+                    current = parseInt(target);
+                    clearInterval(timer);
+                }
+                counter.innerText = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }, 50);
+        }
+        
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Load more images button
+            document.getElementById('loadMoreBtn').addEventListener('click', loadMoreImages);
+            
+            // Modal close button
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('imageModal').style.display = 'none';
+            });
+            
+            // Close modal when clicking outside the image
+            document.getElementById('imageModal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+            
+            // Admin button
+            document.getElementById('adminBtn').addEventListener('click', function() {
+                // Simple admin access (in a real app you'd have proper authentication)
+                const pass = prompt("Masukkan kata sandi admin:", "");
+                if (pass === "admin123") { // This is just for demonstration - use proper auth in production
+                    showConfigForm();
+                } else if (pass !== null) {
+                    alert("Kata sandi salah");
+                }
+            });
+            
+            // Save config button
+            document.getElementById('saveConfig').addEventListener('click', saveGalleryConfig);
+            
+            // Close config form
+            document.getElementById('closeConfig').addEventListener('click', function() {
+                document.getElementById('configForm').style.display = 'none';
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+        
+        // Setup masterplan event listeners
+        function setupMasterplanEventListeners() {
+            // Main masterplan image
+            const mainMasterplan = document.getElementById('mainMasterplan');
+            if (mainMasterplan) {
+                mainMasterplan.addEventListener('click', function() {
+                    openMasterplanModal(this.src);
+                });
+            }
+
+            // All masterplan item images
+            document.querySelectorAll('.masterplan-item img').forEach(img => {
+                img.addEventListener('click', function() {
+                    openMasterplanModal(this.src);
+                });
+            });
+
+            // Close masterplan modal
+            const closeModal = document.querySelector('.masterplan-close-modal');
+            if (closeModal) {
+                closeModal.addEventListener('click', function() {
+                    document.getElementById('masterplanModal').style.display = 'none';
+                });
+            }
+
+            // Close when clicking outside the image
+            const masterplanModal = document.getElementById('masterplanModal');
+            if (masterplanModal) {
+                masterplanModal.addEventListener('click', function(event) {
+                    if (event.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
+            }
+        }
+        
+        // Show configuration form
+        function showConfigForm() {
+            const configForm = document.getElementById('configForm');
+            const imageUrlsTextarea = document.getElementById('imageUrls');
+            
+            // Populate form with current configuration
+            imageUrlsTextarea.value = galleryConfig.imageUrls.join('\n');
+            
+            // Show form
+            configForm.style.display = 'block';
+        }
+        
+        // Save gallery configuration
+        function saveGalleryConfig() {
+            const imageUrlsTextarea = document.getElementById('imageUrls');
+            const newUrls = imageUrlsTextarea.value.split('\n').filter(url => url.trim() !== '');
+            
+            // Update configuration
+            galleryConfig.imageUrls = newUrls;
+            galleryConfig.currentPage = 1;
+            
+            // Save to localStorage
+            localStorage.setItem('galleryConfig', JSON.stringify(galleryConfig));
+            
+            // Reload gallery
+            loadGalleryImages();
+            
+            // Hide form
+            document.getElementById('configForm').style.display = 'none';
+            
+            alert('Konfigurasi galeri berhasil disimpan!');
+        }
+    </script>
+</body>
+</html>

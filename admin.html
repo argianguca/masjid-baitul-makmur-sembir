@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Masjid Baitul Ma'mur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007b77;
+            --accent-color: #f9a825;
+            --secondary-color: #195e8a;
+            --text-color: #333;
+            --bg-light: #f7f7f7;
+            --white: #fff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --radius-sm: 8px;
+            --radius-md: 10px;
+            --radius-lg: 15px;
+            --danger: #e53935;
+            --success: #43a047;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+        }
+
+        .login-container {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .admin-panel {
+            display: none; /* Hidden by default, shown after login */
+        }
+
+        .admin-section {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .admin-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #006663;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background-color: #c62828;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: #2e7d32;
+        }
+
+        .image-preview {
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .preview-item {
+            position: relative;
+            width: 120px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .gallery-manager {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            aspect-ratio: 3/2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: space-around;
+            padding: 5px;
+        }
+
+        .gallery-btn {
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 3px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .back-to-site {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .back-to-site a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-site a:hover {
+            text-decoration: underline;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            background-color: var(--white);
+            border: none;
+            flex-grow: 1;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .galeri-edit {
+            margin-top: 20px;
+        }
+
+        .success-message, .error-message {
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 15px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #e8f5e9;
+            color: var(--success);
+            border: 1px solid #c8e6c9;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: var(--danger);
+            border: 1px solid #ffcdd2;
+        }
+
+        .logo-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .logo-preview-item {
+            width: 100px;
+            height: 100px;
+            background-color: #f5f5f5;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo-preview-item img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .logo-preview-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginSection" class="login-container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Admin Login</h2>
+            <div id="loginError" class="error-message"></div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Masukkan username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Masukkan password">
+            </div>
+            <button id="loginBtn" class="btn" style="width: 100%;">Login</button>
+            <div class="back-to-site" style="margin-top: 20px;">
+                <a href="index.html">← Kembali ke Situs Utama</a>
+            </div>
+        </div>
+
+        <!-- Admin Panel (Hidden until login) -->
+        <div id="adminPanel" class="admin-panel">
+            <div class="admin-header">
+                <h1>Admin Panel Masjid Baitul Ma'mur</h1>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab active" data-tab="donasi">Update Donasi</button>
+                <button class="tab" data-tab="galeri">Kelola Galeri</button>
+                <button class="tab" data-tab="masterplan">Masterplan</button>
+                <button class="tab" data-tab="logos">Logos</button>
+            </div>
+
+            <!-- Update Donation Tab -->
+            <div id="donasiTab" class="tab-content active">
+                <div class="admin-section">
+                    <h3>Update Jumlah Donasi</h3>
+                    <div id="donasiSuccess" class="success-message">Jumlah donasi berhasil diperbarui!</div>
+                    <div id="donasiError" class="error-message"></div>
+                    
+                    <div class="form-group">
+                        <label for="currentDonation">Jumlah Donasi Saat Ini</label>
+                        <input type="text" id="currentDonation" disabled>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newDonation">Jumlah Donasi Baru</label>
+                        <input type="number" id="newDonation" placeholder="Masukkan jumlah baru (tanpa titik atau koma)">
+                    </div>
+                    
+                    <button id="updateDonationBtn" class="btn">Update Jumlah Donasi</button>
+                </div>
+            </div>
+
+            <!-- Gallery Management Tab -->
+            <div id="galeriTab" class="tab-content">
+                <div class="admin-section">
+                    <h3>Tambah Foto Dokumentasi</h3>
+                    <div id="galeriSuccess" class="success-message">Galeri berhasil diperbarui!</div>
+                    <div id="galeriError" class="error-message"></div>
+                    
+                    <div class="form-group">
+                        <label for="imageUrl">URL Gambar</label>
+                        <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="imageDesc">Deskripsi Gambar</label>
+                        <input type="text" id="imageDesc" placeholder="Deskripsi singkat tentang gambar">
+                    </div>
+                    
+                    <button id="addImageBtn" class="btn">Tambah Gambar</button>
+                    
+                    <div class="galeri-edit">
+                        <h4>Kelola Galeri</h4>
+                        <p>Berikut adalah gambar-gambar yang saat ini ditampilkan di galeri:</p>
+                        
+                        <div id="galleryManager" class="gallery-manager">
+                            <!-- Images will be loaded here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masterplan Tab -->
+            <div id="masterplanTab" class="tab-content">
+                <div class="admin-section">
+                    <h3>Update Gambar Masterplan</h3>
+                    <div id="masterplanSuccess" class="success-message">Masterplan berhasil diperbarui!</div>
+                    <div id="masterplanError" class="error-message"></div>
+                    
+                    <div class="form-group">
+                        <label for="mainMasterplanUrl">URL Gambar Masterplan Utama</label>
+                        <input type="text" id="mainMasterplanUrl" placeholder="https://example.com/masterplan.jpg">
+                    </div>
+                    
+                    <button id="updateMainMasterplanBtn" class="btn">Update Masterplan Utama</button>
+                    
+                    <hr style="margin: 30px 0; border: none; border-top: 1px dashed #ccc;">
+                    
+                    <h4>Detail Masterplan</h4>
+                    <div class="form-group">
+                        <label>Tampak Depan</label>
+                        <input type="text" id="frontViewUrl" placeholder="URL gambar tampak depan">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tampak Samping</label>
+                        <input type="text" id="sideViewUrl" placeholder="URL gambar tampak samping">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Interior Masjid</label>
+                        <input type="text" id="interiorUrl" placeholder="URL gambar interior">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Area Pendukung</label>
+                        <input type="text" id="supportAreaUrl" placeholder="URL gambar area pendukung">
+                    </div>
+                    
+                    <button id="updateDetailMasterplanBtn" class="btn">Update Detail Masterplan</button>
+                </div>
+            </div>
+
+            <!-- Logos Tab -->
+            <div id="logosTab" class="tab-content">
+                <div class="admin-section">
+                    <h3>Logos Configuration</h3>
+                    <div id="logoSuccess" class="success-message">Logos berhasil diperbarui!</div>
+                    <div id="logoError" class="error-message"></div>
+                    
+                    <!-- Logo Preview Section -->
+                    <h4>Preview Logo</h4>
+                    <div class="logo-preview">
+                        <div class="logo-preview-item">
+                            <img id="bankJatengPreview" src="/api/placeholder/70/70" alt="Bank Jateng">
+                            <div class="logo-preview-label">Bank Jateng</div>
+                        </div>
+                        <div class="logo-preview-item">
+                            <img id="bankBRIPreview" src="/api/placeholder/70/70" alt="Bank BRI">
+                            <div class="logo-preview-label">Bank BRI</div>
+                        </div>
+                        <div class="logo-preview-item">
+                            <img id="whatsappPreview" src="/api/placeholder/50/50" alt="WhatsApp">
+                            <div class="logo-preview-label">WhatsApp</div>
+                        </div>
+                        <div class="logo-preview-item">
+                            <img id="facebookPreview" src="/api/placeholder/30/30" alt="Facebook">
+                            <div class="logo-preview-label">Facebook</div>
+                        </div>
+                        <div class="logo-preview-item">
+                            <img id="instagramPreview" src="/api/placeholder/30/30" alt="Instagram">
+                            <div class="logo-preview-label">Instagram</div>
+                        </div>
+                        <div class="logo-preview-item">
+                            <img id="youtubePreview" src="/api/placeholder/30/30" alt="YouTube">
+                            <div class="logo-preview-label">YouTube</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo Bank Jateng</label>
+                        <input type="text" id="bankJatengLogo" placeholder="URL logo Bank Jateng" oninput="updateLogoPreview(this.value, 'bankJatengPreview')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo Bank BRI</label>
+                        <input type="text" id="bankBRILogo" placeholder="URL logo Bank BRI" oninput="updateLogoPreview(this.value, 'bankBRIPreview')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo WhatsApp</label>
+                        <input type="text" id="whatsappLogo" placeholder="URL logo WhatsApp" oninput="updateLogoPreview(this.value, 'whatsappPreview')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo Facebook</label>
+                        <input type="text" id="facebookLogo" placeholder="URL logo Facebook" oninput="updateLogoPreview(this.value, 'facebookPreview')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo Instagram</label>
+                        <input type="text" id="instagramLogo" placeholder="URL logo Instagram" oninput="updateLogoPreview(this.value, 'instagramPreview')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Logo YouTube</label>
+                        <input type="text" id="youtubeLogo" placeholder="URL logo YouTube" oninput="updateLogoPreview(this.value, 'youtubePreview')">
+                    </div>
+                    
+                    <button id="updateLogosBtn" class="btn">Update Logos</button>
+                </div>
+            </div>
+
+            <div class="back-to-site">
+                <button id="logoutBtn" class="btn btn-danger" style="margin-bottom: 15px;">Logout</button>
+                <br>
+                <a href="index.html">← Kembali ke Situs Utama</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials - in a real app, this would be on the server side
+        // This is just for demonstration
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "admin123";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup login functionality
+            document.getElementById('loginBtn').addEventListener('click', handleLogin);
+            
+            // Tab navigation
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab') + 'Tab';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Setup logout
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('loginSection').style.display = 'block';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            });
+            
+            // Check if user is already logged in (from localStorage)
+            const isLoggedIn = localStorage.getItem('masjidAdminLoggedIn');
+            if (isLoggedIn === 'true') {
+                showAdminPanel();
+                loadCurrentData();
+            }
+            
+            // Setup donation update
+            document.getElementById('updateDonationBtn').addEventListener('click', updateDonation);
+            
+            // Setup gallery management
+            document.getElementById('addImageBtn').addEventListener('click', addGalleryImage);
+            
+            // Setup masterplan updates
+            document.getElementById('updateMainMasterplanBtn').addEventListener('click', updateMainMasterplan);
+            document.getElementById('updateDetailMasterplanBtn').addEventListener('click', updateDetailMasterplan);
+            
+            // Setup logo updates
+            document.getElementById('updateLogosBtn').addEventListener('click', updateLogos);
+        });
+
+        // Handle login
+        function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('loginError');
+            
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                // Successful login
+                localStorage.setItem('masjidAdminLoggedIn', 'true');
+                showAdminPanel();
+                loadCurrentData();
+                errorElement.style.display = 'none';
+            } else {
+                // Failed login
+                errorElement.textContent = 'Username atau password salah!';
+                errorElement.style.display = 'block';
+            }
+        }
+
+        // Show admin panel, hide login
+        function showAdminPanel() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+
+        // Load current data from localStorage
+        function loadCurrentData() {
+            // Load current donation amount
+            const savedDonationConfig = localStorage.getItem('donationConfig');
+            if (savedDonationConfig) {
+                const donationConfig = JSON.parse(savedDonationConfig);
+                document.getElementById('currentDonation').value = formatRupiah(donationConfig.amount);
+            } else {
+                // Default value from the main site
+                document.getElementById('currentDonation').value = 'Rp 79.630.000';
+            }
+            
+            // Load gallery images
+            loadGalleryImages();
+            
+            // Load masterplan images
+            loadMasterplanImages();
+            
+            // Load logo URLs
+            loadLogoURLs();
+        }
+
+        // Format number as Rupiah
+        function formatRupiah(number) {
+            return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Update donation amount
+        function updateDonation() {
+            const newAmount = document.getElementById('newDonation').value.trim();
+            const successElement = document.getElementById('donasiSuccess');
+            const errorElement = document.getElementById('donasiError');
+            
+            // Validate input
+            if (!newAmount || isNaN(newAmount)) {
+                errorElement.textContent = 'Harap masukkan jumlah donasi yang valid!';
+                errorElement.style.display = 'block';
+                successElement.style.display = 'none';
+                return;
+            }
+            
+            // Save to localStorage
+            const donationConfig = {
+                amount: parseInt(newAmount),
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('donationConfig', JSON.stringify(donationConfig));
+            
+            // Update display
+            document.getElementById('currentDonation').value = formatRupiah(parseInt(newAmount));
+            document.getElementById('newDonation').value = '';
+            
+            // Show success message
+            successElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+
+        // Load gallery images from localStorage
+        function loadGalleryImages() {
+            const galleryManager = document.getElementById('galleryManager');
+            galleryManager.innerHTML = '';
+            
+            const savedConfig = localStorage.getItem('galleryConfig');
+            if (savedConfig) {
+                const galleryConfig = JSON.parse(savedConfig);
+                
+                galleryConfig.imageUrls.forEach((url, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = 'Gallery Image ' + (index + 1);
+                    
+                    const buttons = document.createElement('div');
+                    buttons.className = 'gallery-buttons';
+                    
+                    const upBtn = document.createElement('button');
+                    upBtn.className = 'gallery-btn';
+                    upBtn.style.backgroundColor = '#195e8a';
+                    upBtn.textContent = '↑';
+                    upBtn.onclick = () => moveImage(index, 'up');
+                    
+                    const downBtn = document.createElement('button');
+                    downBtn.className = 'gallery-btn';
+                    downBtn.style.backgroundColor = '#195e8a';
+                    downBtn.textContent = '↓';
+                    downBtn.onclick = () => moveImage(index, 'down');
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'gallery-btn';
+                    deleteBtn.style.backgroundColor = '#e53935';
+                    deleteBtn.textContent = '×';
+                    deleteBtn.onclick = () => deleteImage(index);
+                    
+                    buttons.appendChild(upBtn);
+                    buttons.appendChild(downBtn);
+                    buttons.appendChild(deleteBtn);
+                    
+                    item.appendChild(img);
+                    item.appendChild(buttons);
+                    galleryManager.appendChild(item);
+                });
+            } else {
+                // Create default gallery configuration
+                const defaultUrls = [
+                    '/api/placeholder/400/300',
+                    '/api/placeholder/400/300',
+                    '/api/placeholder/400/300'
+                ];
+                
+                const galleryConfig = {
+                    imageUrls: defaultUrls,
+                    lastUpdated: new Date().toISOString()
+                };
+                
+                localStorage.setItem('galleryConfig', JSON.stringify(galleryConfig));
+                
+                // Reload the display
+                loadGalleryImages();
+            }
+        }
+
+        // Add a new gallery image
+        function addGalleryImage() {
+            const imageUrl = document.getElementById('imageUrl').value.trim();
+            const imageDesc = document.getElementById('imageDesc').value.trim();
+            const successElement = document.getElementById('galeriSuccess');
+            const errorElement = document.getElementById('galeriError');
+            
+            // Validate input
+            if (!imageUrl) {
+                errorElement.textContent = 'Harap masukkan URL gambar!';
+                errorElement.style.display = 'block';
+                successElement.style.display = 'none';
+                return;
+            }
+            
+            // Get existing config or create new one
+            let galleryConfig;
+            const savedConfig = localStorage.getItem('galleryConfig');
+            
+            if (savedConfig) {
+                galleryConfig = JSON.parse(savedConfig);
+            } else {
+                galleryConfig = {
+                    imageUrls: [],
+                    lastUpdated: new Date().toISOString()
+                };
+            }
+            
+            // Add new image
+            galleryConfig.imageUrls.unshift(imageUrl); // Add to beginning
+            galleryConfig.lastUpdated = new Date().toISOString();
+            
+            // Save back to localStorage
+            localStorage.setItem('galleryConfig', JSON.stringify(galleryConfig));
+            
+            // Clear form and show success
+            document.getElementById('imageUrl').value = '';
+            document.getElementById('imageDesc').value = '';
+            
+            successElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            // Hide success after 3 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+            
+            // Reload gallery display
+            loadGalleryImages();
+        }
+
+        // Move gallery image up or down
+        function moveImage(index, direction) {
+            const savedConfig = localStorage.getItem('galleryConfig');
+            if (savedConfig) {
+                const galleryConfig = JSON.parse(savedConfig);
+                
+                if (direction === 'up' && index > 0) {
+                    // Swap with previous
+                    [galleryConfig.imageUrls[index], galleryConfig.imageUrls[index - 1]] = 
+                    [galleryConfig.imageUrls[index - 1], galleryConfig.imageUrls[index]];
+                } else if (direction === 'down' && index < galleryConfig.imageUrls.length - 1) {
+                    // Swap with next
+                    [galleryConfig.imageUrls[index], galleryConfig.imageUrls[index + 1]] = 
+                    [galleryConfig.imageUrls[index + 1], galleryConfig.imageUrls[index]];
+                }
+                
+                // Save changes
+                localStorage.setItem('galleryConfig', JSON.stringify(galleryConfig));
+                
+                // Reload display
+                loadGalleryImages();
+            }
+        }
+
+        // Delete gallery image
+        function deleteImage(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus gambar ini?')) {
+                const savedConfig = localStorage.getItem('galleryConfig');
+                if (savedConfig) {
+                    const galleryConfig = JSON.parse(savedConfig);
+                    
+                    // Remove the image at index
+                    galleryConfig.imageUrls.splice(index, 1);
+                    
+                    // Save changes
+                    localStorage.setItem('galleryConfig', JSON.stringify(galleryConfig));
+                    
+                    // Reload display
+                    loadGalleryImages();
+                    
+                    // Show success message
+                    const successElement = document.getElementById('galeriSuccess');
+                    successElement.textContent = 'Gambar berhasil dihapus!';
+                    successElement.style.display = 'block';
+                    
+                    // Hide success after 3 seconds
+                    setTimeout(() => {
+                        successElement.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        }
+
+        // Load masterplan images
+        function loadMasterplanImages() {
+            const savedConfig = localStorage.getItem('masterplanConfig');
+            if (savedConfig) {
+                const masterplanConfig = JSON.parse(savedConfig);
+                
+                // Set form values
+                document.getElementById('mainMasterplanUrl').value = masterplanConfig.mainImage || '';
+                document.getElementById('frontViewUrl').value = masterplanConfig.frontView || '';
+                document.getElementById('sideViewUrl').value = masterplanConfig.sideView || '';
+                document.getElementById('interiorUrl').value = masterplanConfig.interior || '';
+                document.getElementById('supportAreaUrl').value = masterplanConfig.supportArea || '';
+            }
+        }
+
+        // Update main masterplan image
+        function updateMainMasterplan() {
+            const mainImageUrl = document.getElementById('mainMasterplanUrl').value.trim();
+            const successElement = document.getElementById('masterplanSuccess');
+            const errorElement = document.getElementById('masterplanError');
+            
+            // Validate input
+            if (!mainImageUrl) {
+                errorElement.textContent = 'Harap masukkan URL gambar masterplan!';
+                errorElement.style.display = 'block';
+                successElement.style.display = 'none';
+                return;
+            }
+            
+            // Get existing config or create new one
+            let masterplanConfig;
+            const savedConfig = localStorage.getItem('masterplanConfig');
+            
+            if (savedConfig) {
+                masterplanConfig = JSON.parse(savedConfig);
+            } else {
+                masterplanConfig = {
+                    lastUpdated: new Date().toISOString()
+                };
+            }
+            
+            // Update main image
+            masterplanConfig.mainImage = mainImageUrl;
+            masterplanConfig.lastUpdated = new Date().toISOString();
+            
+            // Save to localStorage
+            localStorage.setItem('masterplanConfig', JSON.stringify(masterplanConfig));
+            
+            // Show success
+            successElement.textContent = 'Masterplan utama berhasil diperbarui!';
+            successElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            // Hide success after 3 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+
+        // Update detail masterplan images
+        function updateDetailMasterplan() {
+            const frontViewUrl = document.getElementById('frontViewUrl').value.trim();
+            const sideViewUrl = document.getElementById('sideViewUrl').value.trim();
+            const interiorUrl = document.getElementById('interiorUrl').value.trim();
+            const supportAreaUrl = document.getElementById('supportAreaUrl').value.trim();
+            const successElement = document.getElementById('masterplanSuccess');
+            const errorElement = document.getElementById('masterplanError');
+            
+            // Get existing config or create new one
+            let masterplanConfig;
+            const savedConfig = localStorage.getItem('masterplanConfig');
+            
+            if (savedConfig) {
+                masterplanConfig = JSON.parse(savedConfig);
+            } else {
+                masterplanConfig = {
+                    lastUpdated: new Date().toISOString()
+                };
+            }
+            
+            // Update detail images if provided
+            if (frontViewUrl) masterplanConfig.frontView = frontViewUrl;
+            if (sideViewUrl) masterplanConfig.sideView = sideViewUrl;
+            if (interiorUrl) masterplanConfig.interior = interiorUrl;
+            if (supportAreaUrl) masterplanConfig.supportArea = supportAreaUrl;
+            
+            masterplanConfig.lastUpdated = new Date().toISOString();
+            
+            // Save to localStorage
+            localStorage.setItem('masterplanConfig', JSON.stringify(masterplanConfig));
+            
+            // Show success
+            successElement.textContent = 'Detail masterplan berhasil diperbarui!';
+            successElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            // Hide success after 3 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+
+        // Load logo URLs from localStorage
+        function loadLogoURLs() {
+            const savedLogos = localStorage.getItem('logosConfig');
+            if (savedLogos) {
+                const logosConfig = JSON.parse(savedLogos);
+                
+                // Set form values
+                document.getElementById('bankJatengLogo').value = logosConfig.bankJateng || '';
+                document.getElementById('bankBRILogo').value = logosConfig.bankBRI || '';
+                document.getElementById('whatsappLogo').value = logosConfig.whatsapp || '';
+                document.getElementById('facebookLogo').value = logosConfig.facebook || '';
+                document.getElementById('instagramLogo').value = logosConfig.instagram || '';
+                document.getElementById('youtubeLogo').value = logosConfig.youtube || '';
+                
+                // Update previews
+                if (logosConfig.bankJateng) updateLogoPreview(logosConfig.bankJateng, 'bankJatengPreview');
+                if (logosConfig.bankBRI) updateLogoPreview(logosConfig.bankBRI, 'bankBRIPreview');
+                if (logosConfig.whatsapp) updateLogoPreview(logosConfig.whatsapp, 'whatsappPreview');
+                if (logosConfig.facebook) updateLogoPreview(logosConfig.facebook, 'facebookPreview');
+                if (logosConfig.instagram) updateLogoPreview(logosConfig.instagram, 'instagramPreview');
+                if (logosConfig.youtube) updateLogoPreview(logosConfig.youtube, 'youtubePreview');
+            }
+        }
+
+        // Update logo preview
+        function updateLogoPreview(url, previewId) {
+            if (url) {
+                document.getElementById(previewId).src = url;
+            }
+        }
+
+        // Update logos
+        function updateLogos() {
+            const bankJatengLogo = document.getElementById('bankJatengLogo').value.trim();
+            const bankBRILogo = document.getElementById('bankBRILogo').value.trim();
+            const whatsappLogo = document.getElementById('whatsappLogo').value.trim();
+            const facebookLogo = document.getElementById('facebookLogo').value.trim();
+            const instagramLogo = document.getElementById('instagramLogo').value.trim();
+            const youtubeLogo = document.getElementById('youtubeLogo').value.trim();
+            
+            const successElement = document.getElementById('logoSuccess');
+            const errorElement = document.getElementById('logoError');
+            
+            // Create or update logos configuration
+            const logosConfig = {
+                lastUpdated: new Date().toISOString()
+            };
+            
+            // Add logo URLs if provided
+            if (bankJatengLogo) logosConfig.bankJateng = bankJatengLogo;
+            if (bankBRILogo) logosConfig.bankBRI = bankBRILogo;
+            if (whatsappLogo) logosConfig.whatsapp = whatsappLogo;
+            if (facebookLogo) logosConfig.facebook = facebookLogo;
+            if (instagramLogo) logosConfig.instagram = instagramLogo;
+            if (youtubeLogo) logosConfig.youtube = youtubeLogo;
+            
+            // Save to localStorage
+            localStorage.setItem('logosConfig', JSON.stringify(logosConfig));
+            
+            // Show success
+            successElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            
+            // Hide success after 3 seconds
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
